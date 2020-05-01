@@ -1,5 +1,4 @@
-## Put comments here that give an overall description of what your
-## functions do
+
 
 ## Write a short comment describing this function
 ## This function creates a special "matrix" object that can cache its inverse.
@@ -13,7 +12,7 @@ makeCacheMatrix <- function(x = matrix()) {
   }
   get <- function() x
   setSolution <- function(solution) m_cache <<- solution
-  getSolution <- function() m
+  getSolution <- function() m_cache
   list(set = set, get = get,
        setSolution = setSolution,
        getSolution = setSolution)
@@ -28,7 +27,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
         ## See if the cache is available
-        cache <- x[getSolution()]
+        cache <- x$getSolution
         
         ## If cache is available, return cache
         if(!is.null(cache)) {
@@ -43,7 +42,7 @@ cacheSolve <- function(x, ...) {
         inverse <- solve(matrix_data)
         
         ## Set it on the cache
-        x$setmean(inverse)
+        x$setSolution(inverse)
         
-        m
+        m_cache
 }
